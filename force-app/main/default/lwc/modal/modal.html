@@ -1,0 +1,130 @@
+<template>
+    <lightning-button 
+        variant="success" 
+        label="Open popup"
+        title="Open popup" 
+        onclick={showModalBox}
+    >
+    </lightning-button>
+    <template if:true={isShowModal}>
+        <!-- define heading for modal here -->
+    <lightning-modal-header label="My Modal Heading"></lightning-modal-header>
+    <!-- modal body starts here -->
+    <lightning-modal-body>
+        <div class="slds-box slds-theme_default ">
+            <!-- Progress step type base(default) -->
+            <lightning-progress-indicator current-step={selectedStep}>
+                <lightning-progress-step
+                    label="Requirements"
+                    value="step1"
+                    onstepblur={handleStepBlur}
+                    onclick={selectedStep1}
+                >
+                </lightning-progress-step>
+                <lightning-progress-step
+                    label="API"
+                    value="step2"
+                    onstepblur={handleStepBlur}
+                    onclick={selectedStep2}
+                >
+                </lightning-progress-step>
+                <lightning-progress-step
+                    label="Billing"
+                    value="step3"
+                    onstepblur={handleStepBlur}
+                    onclick={selectedStep3}
+                >
+                </lightning-progress-step>
+            </lightning-progress-indicator>
+            <!-- progress step title -->
+            <div class="slds-progress">
+                <ol class="slds-progress__list">
+                    <div style="margin-left: -0.6rem;">Requirements</div>
+                    <div>API</div>
+                    <div style="margin-right: -0.6rem;">Billing</div>
+                </ol>
+            </div>
+            <!-- div for first step in progress step -->
+            <div class="slds-var-p-around_x-small" lwc:if={step1}>
+                <!-- section one in first step -->
+                <div class="slds-var-p-around_x-small">
+                    <h1 class="slds-text-heading_large">
+                        Your Portfolio
+                    </h1>
+                    <h2 class="slds-text-heading_medium">
+                        Which Service will you need?
+                    </h2>
+                    <p class="slds-text-title">
+                        Broadband with access lines includes the circuits needed to supply broadband over copper access technology.
+                    </p>
+                    <lightning-radio-group name="serviceOptions" options={serviceOptions} label=" " value={serviceSelected}></lightning-radio-group>
+                    <h2 class="slds-text-heading_medium">
+                        How many existing connections do you have?
+                    </h2>
+                    <p class="slds-text-title slds-wrap">
+                        We mean active broadband connections you supply to end users. Don't tell us about any projections or forecasts.
+                    </p>
+                    <lightning-textarea class="connection-details" label=" " name="connection-details" onchange={handleConnectionDetailsChange} value={connectionDetails}></lightning-textarea>
+                </div>
+                <!-- section 2 in first step -->
+                <div class="slds-var-p-around_x-small">
+                    <h1 class="slds-text-heading_large">
+                        Migrating to Broadband One
+                    </h1>
+                    <h2 class="slds-text-heading_medium">
+                        How many broadband connections will you mirate to us?
+                    </h2>
+                    <p class="slds-text-title slds-wrap">
+                        You told us you have 0 connections.
+                    </p>
+                    <lightning-textarea class="migrating-details" label=" " name="migrating-details" onchange={handleMigratingDetailsChange} value={migratingDetails}></lightning-textarea>
+                    <h2 class="slds-text-heading_medium">
+                        What's your target migration date?
+                    </h2>
+                    <p class="slds-text-title slds-wrap">
+                        If you're not certain yet, give us an estimate date.
+                    </p>
+                    <lightning-input type="date" name="input1" label=" " ></lightning-input>
+                </div>
+                <!-- section 3 in first step -->
+                <div class="slds-var-p-around_x-small">
+                    <h1 class="slds-text-heading_large">
+                        Forecasts
+                    </h1>
+                    <h2 class="slds-text-heading_medium">
+                        How many new broadband one connections do you forecast you'll make in the next 12 months?
+                    </h2>
+                    <lightning-textarea class="migrating-details" label=" " name="migrating-details" onchange={handleMigratingDetailsChange} value={migratingDetails}></lightning-textarea>
+                    <h2 class="slds-text-heading_medium">
+                        Anything else to tell us?
+                    </h2>
+                    <p class="slds-text-title slds-wrap">
+                        Optional
+                    </p>
+                    <lightning-textarea class="migrating-details" label=" " name="migrating-details" onchange={handleMigratingDetailsChange} value={migratingDetails}></lightning-textarea>
+                </div>
+            </div>
+            <!-- div for second step in porgress step -->
+            <div lwc:if={step2}>
+                
+            </div>
+            <!-- div for third step in progress step -->
+            <div lwc:if={step3}>
+            </div>  
+        </div>
+        </lightning-modal-body>
+        <!-- modal footer for buttons -->
+        <lightning-modal-footer>
+            <div class="slds-var-m-vertical_medium">
+                <lightning-button variant="brand" class="slds-var-m-left_x-small" label="Back"  onclick={prevStep}></lightning-button>
+                <!-- switching 'next' button to 'finish' button at last step -->
+                <template if:false={isSelectedStep3}>
+                    <lightning-button variant="brand" class="slds-var-m-left_x-small" label="Next" onclick={nextStep}></lightning-button>
+                </template>
+                <template if:true={isSelectedStep3}>
+                    <lightning-button variant="brand" class="slds-var-m-left_x-small" label="Finish" onclick={handleFinish}></lightning-button>
+                </template>        
+            </div>
+        </lightning-modal-footer>
+    </template>
+</template>

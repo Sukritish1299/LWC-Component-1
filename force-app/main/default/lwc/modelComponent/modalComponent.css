@@ -1,0 +1,9 @@
+.slds-text-heading_large{
+    font-size: var(fontSize9,1.75rem);
+    line-height: var(lineHeightHeading,1.25);
+    color: #5514B4;
+    font-weight: var(fontWeightBold, 700);
+}
+.slds-text-title{
+    color: darkgray;
+}
