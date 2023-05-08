@@ -1,9 +1,35 @@
-.slds-text-heading_large{
+.heading{
     font-size: var(fontSize9,1.75rem);
     line-height: var(lineHeightHeading,1.25);
     color: #5514B4;
     font-weight: var(fontWeightBold, 700);
 }
+.black-icon{
+    --lwc-colorTextIconDefault: black;
+}
 .slds-text-title{
-    color: darkgray;
+    color: rgba(169, 169, 169, 0.674);
+}
+.slds-is-active .slds-progress__marker{
+    box-sizing: border-box;
+    /* position: absolute; */
+    left: 4.17%;
+    right: 4.17%;
+    top: 4.16%;
+    bottom: 4.17%;
+
+    background: var(--colorBackgroundLight, #FFFFFF);
+    /* Functional/Green */
+    border: var(-c-spacingXxSmall, 0.25rem) solid #1B8811;
+}
+
+.slds-progress__item.slds-is-completed .slds-progress__marker_icon, .slds-progress__item.slds-is-completed .slds-progress__marker--icon{
+    color: #1B8811 !important;
+}
+.custom-css {
+    --lwc-progressBarColorBackgroundFill: green;
+}
+.button{
+    color:rgba(169, 169, 169, 0.674);
+    align-items: right;
 }

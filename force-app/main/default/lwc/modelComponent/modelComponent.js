@@ -4,7 +4,7 @@ export default class ModelComponent extends LightningElement {
     @track selectedStep = 'step1';
     @track connectionDetails = '';
     @track migratingDetails = '';
-    @track isShowModal = false;
+    @track isShowModal = true;
 
     step1 = true;
     step2 = false;
@@ -57,25 +57,6 @@ export default class ModelComponent extends LightningElement {
             this.step1 = true;
             this.step2 = false;
             this.step3 = false;
-        }
-    }
-
-    prevStep(){
-        var moveToPrevStep = this.selectedStep;
-        if(this.selectedStep == 'step2'){
-            this.selectedStep = 'step1';
-            this.step1 = true;
-            this.step2 = false;
-            this.step3 = false;
-        }else if(this.selectedStep == 'step3'){
-            this.selectedStep = 'step2';
-            this.step2 = true;
-            this.step3 = false;
-            this.step1 = false;
-        }else{
-            this.step3 = true;
-            this.step1 = false;
-            this.step2 = false;
         }
     }
 
